@@ -1,0 +1,11 @@
+{
+    "version": 1,
+    "port": ":8080",
+    "cookieMaxAge": 86400,
+    "cookieId": "randomid",
+    "cookieName": "icepid",
+    "password": "",
+    "logs": [
+        "/var/log/kern.log"
+    ]
+}
