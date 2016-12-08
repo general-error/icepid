@@ -49,7 +49,7 @@ type IndexPage struct {
     Df string
 }
 
-var appVersion string = "1.0.0"
+var appVersion string = "1.0.1"
 var confVersion int = 1
 var settings = Settings{}
 
