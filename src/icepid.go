@@ -50,6 +50,7 @@ type IndexPage struct {
 }
 
 var appVersion string = "1.0.0"
+var confVersion int = 1
 var settings = Settings{}
 
 func load_settings() Settings {
@@ -58,12 +59,16 @@ func load_settings() Settings {
     configuration := Settings{}
     err := decoder.Decode(&configuration)
 
+    if configuration.Version != confVersion {
+        log.Fatal("Error: configuration file version mismatch\n")
+    }
+
     if err == nil {
         return configuration
     }
 
     log.Fatal("Error: load_settings\n", err)
-    return settings
+    return configuration
 }
 
 func main() {
