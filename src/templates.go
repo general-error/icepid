@@ -46,6 +46,9 @@ func wrap(base string) string {
     .header {
         display: flex;
         justify-content: space-between;
+        background-color: #b6dcfc;
+        margin: -8px;
+        padding: 8px;
     }
     .cell {
         border: 1px solid black;
@@ -86,10 +89,9 @@ var index_tpl string = wrap(
         </form>
         <div>{{.Uptime}}</div>
         <div>{{.Date}}</div>
-     </div>
-     <hr>
-        <p>Updates:</p>
-        <pre>{{.Updates}}</pre>
+    </div>
+    <p>Updates:</p>
+    <pre>{{.Updates}}</pre>
     <hr>
         <pre class="cell">{{.W}}</pre><br>
         <pre class="cell">{{.Free}}</pre><br>
