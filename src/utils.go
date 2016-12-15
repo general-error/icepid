@@ -125,3 +125,14 @@ func get_df() string {
     log.Print("Error: get_df\n", err)
     return ""
 }
+
+func get_sensors() string {
+    out, err := exec.Command("sensors").Output()
+
+    if err == nil {
+        return string(out)
+    }
+
+    log.Print("Error: get_sensors\n", err)
+    return ""
+}

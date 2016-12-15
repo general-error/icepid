@@ -96,6 +96,7 @@ var index_tpl string = wrap(
         <pre class="cell">{{.W}}</pre><br>
         <pre class="cell">{{.Free}}</pre><br>
         <pre class="cell">{{.Df}}</pre><br>
+        <pre class="cell">{{.Sensors}}</pre><br>
      <hr>
      <p>Log files:</p>
      <ul>

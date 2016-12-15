@@ -47,6 +47,7 @@ type IndexPage struct {
     Date string
     W string
     Df string
+    Sensors string
 }
 
 var appVersion string = "1.0.2"

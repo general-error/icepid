@@ -90,8 +90,9 @@ func index_handler(w http.ResponseWriter, r *http.Request) {
     date := get_date()
     w_val := get_w()
     df := get_df()
+    sensors := get_sensors()
 
-    page := IndexPage{ appVersion, logs, updates, uptime, free, date, w_val, df }
+    page := IndexPage{ appVersion, logs, updates, uptime, free, date, w_val, df, sensors }
     
     t, err := template.New("index").Parse(index_tpl)
     if err != nil {
