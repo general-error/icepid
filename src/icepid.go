@@ -49,8 +49,9 @@ type IndexPage struct {
     Df string
 }
 
-var appVersion string = "1.0.1"
+var appVersion string = "1.0.2"
 var confVersion int = 1
+var loginAttempts int = 0
 var settings = Settings{}
 
 func load_settings() Settings {

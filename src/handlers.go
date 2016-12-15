@@ -25,6 +25,7 @@ import (
     "html/template"
     "fmt"
     "strconv"
+    "time"
 )
 
 func check_access(w http.ResponseWriter, r *http.Request) {
@@ -50,6 +51,7 @@ func login_handler(w http.ResponseWriter, r *http.Request) {
     } else {
         if r.FormValue("password") == settings.Password {
             // password right
+            loginAttempts = 0
             cookie := http.Cookie{
                 Name: settings.CookieName,
                 Value: settings.CookieId,
@@ -59,7 +61,12 @@ func login_handler(w http.ResponseWriter, r *http.Request) {
             http.Redirect(w, r, "/index", http.StatusFound)
         } else {
             // password wrong
-            http.Redirect(w, r, "/", http.StatusFound)
+            if loginAttempts >= 5 {
+                time.Sleep(20 * time.Second)
+            } else {
+                loginAttempts++
+                http.Redirect(w, r, "/", http.StatusFound)
+            }
         }
     }
 }
