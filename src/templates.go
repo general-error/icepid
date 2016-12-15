@@ -104,5 +104,5 @@ var index_tpl string = wrap(
         <li><a href="/log?log={{$key}}">{{$val}}</a></li>
         {{end}}
      </ul>
-     <div class="bottom">v. {{.Version}}</div>
+     <div class="bottom">v{{.Version}}</div>
      `)
