@@ -57,8 +57,16 @@ func wrap(base string) string {
     }
     .bottom {
         position: fixed;
-        bottom: 0;
         font-size: small;
+        background-color: #b6dcfc;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding: 3px;
+        height: 15px;
+    }
+    .main {
+        margin-bottom: 30px;
     }
     </style>
     `
@@ -90,20 +98,22 @@ var index_tpl string = wrap(
         <div>{{.Uptime}}</div>
         <div>{{.Date}}</div>
     </div>
-    <p>Updates:</p>
-    <pre>{{.Updates}}</pre>
-    <hr>
+    <div class="main">
+        <p>Updates:</p>
+        <pre>{{.Updates}}</pre>
+        <hr>
         <pre class="cell">{{.W}}</pre><br>
         <pre class="cell">{{.Free}}</pre><br>
         <pre class="cell">{{.Df}}</pre><br>
         <pre class="cell">{{.Sensors}}</pre><br>
-     <hr>
-     <p>Log files:</p>
-     <ul>
-        <li><a href="/dmesg">dmesg</a></li>
-        {{range $key, $val := .Logs}}
-        <li><a href="/log?log={{$key}}">{{$val}}</a></li>
-        {{end}}
-     </ul>
-     <div class="bottom">v{{.Version}}</div>
+        <hr>
+        <p>Log files:</p>
+        <ul>
+            <li><a href="/dmesg">dmesg</a></li>
+            {{range $key, $val := .Logs}}
+            <li><a href="/log?log={{$key}}">{{$val}}</a></li>
+            {{end}}
+        </ul>
+    </div>
+    <div class="bottom">v{{.Version}}</div>
      `)
