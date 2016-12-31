@@ -50,7 +50,7 @@ type IndexPage struct {
     Sensors string
 }
 
-var appVersion string = "1.0.2"
+var appVersion string = "1.0.3"
 var confVersion int = 1
 var loginAttempts int = 0
 var settings = Settings{}

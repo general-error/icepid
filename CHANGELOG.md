@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.0.3] - 2016-12-31
+### Added
+- Temperature info using 'sensors'.
+
+### Fixed
+- Version div position.
+
 ## [1.0.2] - 2016-12-15
 ### Security
 - Make 20s pause after 5 login attempts.
