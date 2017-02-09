@@ -46,12 +46,13 @@ func login_handler(w http.ResponseWriter, r *http.Request) {
             if err != nil {
                log.Fatal(err)
             }
-            t.Execute(w, nil)
+            t.Execute(w, loginPage)
         }
     } else {
         if r.FormValue("password") == settings.Password {
             // password right
             loginAttempts = 0
+            loginPage.ErrorMessage = ""
             cookie := http.Cookie{
                 Name: settings.CookieName,
                 Value: settings.CookieId,
@@ -61,6 +62,7 @@ func login_handler(w http.ResponseWriter, r *http.Request) {
             http.Redirect(w, r, "/index", http.StatusFound)
         } else {
             // password wrong
+            loginPage.ErrorMessage = "Wrong password!"
             if loginAttempts >= 5 {
                 time.Sleep(20 * time.Second)
             } else {

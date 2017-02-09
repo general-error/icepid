@@ -39,6 +39,14 @@ func wrap(base string) string {
         position: absolute;
         font-size: 300%;
     }
+    .error {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px;
+        font-size: 200%;
+        color: red;
+    }
     .letter::first-letter {
             color: #0000ff;
             font-size: 200%;
@@ -86,6 +94,9 @@ var login_tpl string = wrap(
                 <input name="password" type="password" autofocus required >
                 <input type="submit" value="Login">
             </form>
+        </div>
+        <div class="error">
+            {{.ErrorMessage}}
         </div>
     </div>
     `)

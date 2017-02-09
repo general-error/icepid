@@ -50,10 +50,15 @@ type IndexPage struct {
     Sensors string
 }
 
-var appVersion string = "1.0.3"
+type LoginPage struct {
+    ErrorMessage string
+}
+
+var appVersion string = "1.0.4"
 var confVersion int = 1
 var loginAttempts int = 0
 var settings = Settings{}
+var loginPage = LoginPage{}
 
 func load_settings() Settings {
     file, _ := os.Open("icepid.json")

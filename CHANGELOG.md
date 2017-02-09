@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.4] - 2017-02-09
+### Added
+- Error message on wrong password.
+
 ## [1.0.3] - 2016-12-31
 ### Added
 - Temperature info using 'sensors'.
