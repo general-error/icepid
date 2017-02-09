@@ -54,8 +54,8 @@ type LoginPage struct {
     ErrorMessage string
 }
 
-var appVersion string = "1.0.4"
-var confVersion int = 1
+const appVersion string = "1.0.4"
+const confVersion int = 1
 var loginAttempts int = 0
 var settings = Settings{}
 var loginPage = LoginPage{}

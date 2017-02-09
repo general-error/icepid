@@ -20,7 +20,7 @@
 package main
 
 func wrap(base string) string {
-    var header =
+    const header =
 `<html>
     <head><title>Icepid</title></head>
     <body>
@@ -78,7 +78,7 @@ func wrap(base string) string {
     }
     </style>
     `
-    var footer =
+    const footer =
 `</body></html>`
 
     return header + base + footer
