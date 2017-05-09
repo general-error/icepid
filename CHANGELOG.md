@@ -1,5 +1,17 @@
 # Change Log
 
+## [1.1.0] - 2017-05-09
+### Added
+- SMART data query
+- systemd service unit
+
+### Fixed
+- Missing return statement after redirect
+
+### Changed
+- Use go library instead of system date command
+- Update screenshot
+
 ## [1.0.4] - 2017-02-09
 ### Added
 - Error message on wrong password.
