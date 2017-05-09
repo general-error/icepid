@@ -53,9 +53,9 @@ func getUpdates() string {
 
     if strings.Compare(output, "Listing...\n") == 0 {
         return "No updates.";
-    } else {
-        return output[len("Listing..."):len(output)];
     }
+
+    return output[len("Listing..."):len(output)];
 }
 
 func getUptime() string {
