@@ -55,7 +55,7 @@ func getUpdates() string {
 		return "No updates."
 	}
 
-	return output[len("Listing..."):len(output)]
+	return output[len("Listing..."):]
 }
 
 func getUptime() string {
