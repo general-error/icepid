@@ -20,121 +20,121 @@
 package main
 
 import (
-    "io/ioutil"
-    "os/exec"
-    "bytes"
-    "log"
-    "strings"
-    "time"
+	"bytes"
+	"io/ioutil"
+	"log"
+	"os/exec"
+	"strings"
+	"time"
 )
 
 func getLog(path string) string {
-    file, err := ioutil.ReadFile(path)
-    
-    if err != nil {
-        log.Fatal(err)
-    }
+	file, err := ioutil.ReadFile(path)
 
-    return string(file);
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return string(file)
 }
 
 func getUpdates() string {
-    cmd := exec.Command("apt",  "list", "--upgradable")
-    var out bytes.Buffer
-    cmd.Stdout = &out
-    err := cmd.Start()
-    err = cmd.Wait()
+	cmd := exec.Command("apt", "list", "--upgradable")
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Start()
+	err = cmd.Wait()
 
-    var output string
+	var output string
 
-    if err == nil {
-        output = out.String()
-    }
+	if err == nil {
+		output = out.String()
+	}
 
-    if strings.Compare(output, "Listing...\n") == 0 {
-        return "No updates.";
-    }
+	if strings.Compare(output, "Listing...\n") == 0 {
+		return "No updates."
+	}
 
-    return output[len("Listing..."):len(output)];
+	return output[len("Listing..."):len(output)]
 }
 
 func getUptime() string {
-    out, err := exec.Command("uptime", "-p").Output()
+	out, err := exec.Command("uptime", "-p").Output()
 
-    if err == nil {
-        return string(out)
-    }
+	if err == nil {
+		return string(out)
+	}
 
-    log.Print("Error: get_uptime\n", err)
-    return ""
+	log.Print("Error: get_uptime\n", err)
+	return ""
 }
 
 func getDmesg() string {
-    out, err := exec.Command("dmesg").Output()
+	out, err := exec.Command("dmesg").Output()
 
-    if err == nil {
-        return string(out)
-    }
+	if err == nil {
+		return string(out)
+	}
 
-    log.Print("Error: query_dmesg\n", err)
-    return ""
+	log.Print("Error: query_dmesg\n", err)
+	return ""
 }
 
 func getFree() string {
-    out, err := exec.Command("free", "-h").Output()
+	out, err := exec.Command("free", "-h").Output()
 
-    if err == nil {
-        return string(out)
-    }
+	if err == nil {
+		return string(out)
+	}
 
-    log.Print("Error: get_free\n", err)
-    return ""
+	log.Print("Error: get_free\n", err)
+	return ""
 }
 
 func getDate() string {
-    return time.Now().Format("2006-01-02 15:04:05")
+	return time.Now().Format("2006-01-02 15:04:05")
 }
 
 func getW() string {
-    out, err := exec.Command("w").Output()
+	out, err := exec.Command("w").Output()
 
-    if err == nil {
-        return string(out)
-    }
+	if err == nil {
+		return string(out)
+	}
 
-    log.Print("Error: get_w\n", err)
-    return ""
+	log.Print("Error: get_w\n", err)
+	return ""
 }
 
 func getDf() string {
-    out, err := exec.Command("df", "-h", "/", "/home").Output()
+	out, err := exec.Command("df", "-h", "/", "/home").Output()
 
-    if err == nil {
-        return string(out)
-    }
+	if err == nil {
+		return string(out)
+	}
 
-    log.Print("Error: get_df\n", err)
-    return ""
+	log.Print("Error: get_df\n", err)
+	return ""
 }
 
 func getSensors() string {
-    out, err := exec.Command("sensors").Output()
+	out, err := exec.Command("sensors").Output()
 
-    if err == nil {
-        return string(out)
-    }
+	if err == nil {
+		return string(out)
+	}
 
-    log.Print("Error: get_sensors\n", err)
-    return ""
+	log.Print("Error: get_sensors\n", err)
+	return ""
 }
 
 func getSmart(disk string) string {
-    out, err := exec.Command("./icepid-smart", "-d", disk).Output()
+	out, err := exec.Command("./icepid-smart", "-d", disk).Output()
 
-    if err == nil {
-        return string(out)
-    }
+	if err == nil {
+		return string(out)
+	}
 
-    log.Print("Error: query_smart\n", err)
-    return ""
+	log.Print("Error: query_smart\n", err)
+	return ""
 }

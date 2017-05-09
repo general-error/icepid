@@ -20,8 +20,7 @@
 package main
 
 func wrap(base string) string {
-    const header =
-`<html>
+	const header = `<html>
     <head><title>Icepid</title></head>
     <body>
     <style type="text/css">
@@ -78,14 +77,13 @@ func wrap(base string) string {
     }
     </style>
     `
-    const footer =
-`</body></html>`
+	const footer = `</body></html>`
 
-    return header + base + footer
+	return header + base + footer
 }
 
 var loginTpl string = wrap(
-    `<div class="container">
+	`<div class="container">
         <div class="title">
             <p class="letter">Icepid</p>
         </div>
@@ -102,7 +100,7 @@ var loginTpl string = wrap(
     `)
 
 var indexTpl string = wrap(
-    `<div class="header">
+	`<div class="header">
         <form action="/logout" method="post">
             <input type="submit" value="Logout">
         </form>
