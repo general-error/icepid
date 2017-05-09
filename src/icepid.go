@@ -58,7 +58,7 @@ type LoginPage struct {
 
 const appVersion string = "1.1.1"
 const confVersion int = 2
-var loginAttempts int = 0
+var loginAttempts int
 var settings = Settings{}
 var loginPage = LoginPage{}
 
