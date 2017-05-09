@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/general-error/icepid)](https://goreportcard.com/report/github.com/general-error/icepid)
+
 # Icepid
 
 Icepid is a very simple dashboard. It should be good to use on a small personal

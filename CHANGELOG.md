@@ -1,5 +1,15 @@
 # Change Log
 
+## [1.1.1] - 2017-05-09
+### Fixed
+- Remove unreachable code
+- Use mixed caps naming
+- Simplify code
+- Run go fmt
+
+### Added
+- Go Report Card
+
 ## [1.1.0] - 2017-05-09
 ### Added
 - SMART data query
