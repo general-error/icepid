@@ -25,6 +25,7 @@ import (
     "bytes"
     "log"
     "strings"
+    "time"
 )
 
 func query_log(path string) string {
@@ -94,14 +95,7 @@ func get_free() string {
 }
 
 func get_date() string {
-    out, err := exec.Command("date").Output()
-
-    if err == nil {
-        return string(out)
-    }
-
-    log.Print("Error: get_date\n", err)
-    return ""
+    return time.Now().Format("2006-01-02 15:04:05")
 }
 
 func get_w() string {
