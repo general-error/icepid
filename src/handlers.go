@@ -28,21 +28,21 @@ import (
     "time"
 )
 
-func check_access(w http.ResponseWriter, r *http.Request) {
+func checkAccess(w http.ResponseWriter, r *http.Request) {
     _, err := r.Cookie(settings.CookieName)
     if err != nil {
         http.Redirect(w, r, "/", http.StatusFound)
     }
 }
 
-func login_handler(w http.ResponseWriter, r *http.Request) {
+func loginHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method == "GET" {
         _, err := r.Cookie(settings.CookieName)
         if err == nil {
             // cookie set
             http.Redirect(w, r, "/index", http.StatusFound)
         } else {
-            t, err := template.New("login").Parse(login_tpl)
+            t, err := template.New("login").Parse(loginTpl)
             if err != nil {
                log.Fatal(err)
             }
@@ -73,7 +73,7 @@ func login_handler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-func logout_handler(w http.ResponseWriter, r *http.Request) {
+func logoutHandler(w http.ResponseWriter, r *http.Request) {
     cookie := http.Cookie{
         Name: settings.CookieName,
         Value: settings.CookieId,
@@ -83,21 +83,21 @@ func logout_handler(w http.ResponseWriter, r *http.Request) {
     http.Redirect(w, r, "/", http.StatusFound)
 }
 
-func index_handler(w http.ResponseWriter, r *http.Request) {
-    check_access(w, r)
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+    checkAccess(w, r)
     logs := settings.Logs;
-    updates := list_updates()
-    uptime := get_uptime()
-    free := get_free()
-    date := get_date()
-    w_val := get_w()
-    df := get_df()
-    sensors := get_sensors()
+    updates := getUpdates()
+    uptime := getUptime()
+    free := getFree()
+    date := getDate()
+    wVal := getW()
+    df := getDf()
+    sensors := getSensors()
     disks := settings.Disks
 
-    page := IndexPage{ appVersion, logs, updates, uptime, free, date, w_val, df, sensors, disks }
+    page := IndexPage{ appVersion, logs, updates, uptime, free, date, wVal, df, sensors, disks }
     
-    t, err := template.New("index").Parse(index_tpl)
+    t, err := template.New("index").Parse(indexTpl)
     if err != nil {
         log.Fatal(err)
     }
@@ -107,8 +107,8 @@ func index_handler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-func log_view_handler(w http.ResponseWriter, r *http.Request) {
-    check_access(w, r)
+func logHandler(w http.ResponseWriter, r *http.Request) {
+    checkAccess(w, r)
     
     logNum, err := strconv.Atoi(r.URL.Query().Get("log"))
 
@@ -117,17 +117,17 @@ func log_view_handler(w http.ResponseWriter, r *http.Request) {
         return
     }
     
-    fmt.Fprintf(w, "%v", query_log(settings.Logs[logNum]))
+    fmt.Fprintf(w, "%v", getLog(settings.Logs[logNum]))
 }
 
-func dmesg_view_handler(w http.ResponseWriter, r *http.Request) {
-    check_access(w, r)
+func dmesgHandler(w http.ResponseWriter, r *http.Request) {
+    checkAccess(w, r)
 
-    fmt.Fprintf(w, "%v", query_dmesg())
+    fmt.Fprintf(w, "%v", getDmesg())
 }
 
-func smart_handler(w http.ResponseWriter, r *http.Request) {
-    check_access(w, r)
+func smartHandler(w http.ResponseWriter, r *http.Request) {
+    checkAccess(w, r)
 
     disk := r.URL.Query().Get("disk")
 
@@ -136,5 +136,5 @@ func smart_handler(w http.ResponseWriter, r *http.Request) {
 		return
     }
 
-    fmt.Fprintf(w, "%v", query_smart(disk))
+    fmt.Fprintf(w, "%v", getSmart(disk))
 }

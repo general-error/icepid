@@ -84,7 +84,7 @@ func wrap(base string) string {
     return header + base + footer
 }
 
-var login_tpl string = wrap(
+var loginTpl string = wrap(
     `<div class="container">
         <div class="title">
             <p class="letter">Icepid</p>
@@ -101,7 +101,7 @@ var login_tpl string = wrap(
     </div>
     `)
 
-var index_tpl string = wrap(
+var indexTpl string = wrap(
     `<div class="header">
         <form action="/logout" method="post">
             <input type="submit" value="Logout">

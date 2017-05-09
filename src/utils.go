@@ -28,7 +28,7 @@ import (
     "time"
 )
 
-func query_log(path string) string {
+func getLog(path string) string {
     file, err := ioutil.ReadFile(path)
     
     if err != nil {
@@ -38,7 +38,7 @@ func query_log(path string) string {
     return string(file);
 }
 
-func list_updates() string {
+func getUpdates() string {
     cmd := exec.Command("apt",  "list", "--upgradable")
     var out bytes.Buffer
     cmd.Stdout = &out
@@ -58,7 +58,7 @@ func list_updates() string {
     }
 }
 
-func get_uptime() string {
+func getUptime() string {
     out, err := exec.Command("uptime", "-p").Output()
 
     if err == nil {
@@ -69,7 +69,7 @@ func get_uptime() string {
     return ""
 }
 
-func query_dmesg() string {
+func getDmesg() string {
     out, err := exec.Command("dmesg").Output()
 
     if err == nil {
@@ -80,7 +80,7 @@ func query_dmesg() string {
     return ""
 }
 
-func get_free() string {
+func getFree() string {
     out, err := exec.Command("free", "-h").Output()
 
     if err == nil {
@@ -91,11 +91,11 @@ func get_free() string {
     return ""
 }
 
-func get_date() string {
+func getDate() string {
     return time.Now().Format("2006-01-02 15:04:05")
 }
 
-func get_w() string {
+func getW() string {
     out, err := exec.Command("w").Output()
 
     if err == nil {
@@ -106,7 +106,7 @@ func get_w() string {
     return ""
 }
 
-func get_df() string {
+func getDf() string {
     out, err := exec.Command("df", "-h", "/", "/home").Output()
 
     if err == nil {
@@ -117,7 +117,7 @@ func get_df() string {
     return ""
 }
 
-func get_sensors() string {
+func getSensors() string {
     out, err := exec.Command("sensors").Output()
 
     if err == nil {
@@ -128,7 +128,7 @@ func get_sensors() string {
     return ""
 }
 
-func query_smart(disk string) string {
+func getSmart(disk string) string {
     out, err := exec.Command("./icepid-smart", "-d", disk).Output()
 
     if err == nil {

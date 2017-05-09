@@ -56,13 +56,13 @@ type LoginPage struct {
     ErrorMessage string
 }
 
-const appVersion string = "1.1.0"
+const appVersion string = "1.1.1"
 const confVersion int = 2
 var loginAttempts int = 0
 var settings = Settings{}
 var loginPage = LoginPage{}
 
-func load_settings() Settings {
+func loadSettings() Settings {
     file, _ := os.Open("icepid.json")
     decoder := json.NewDecoder(file)
     configuration := Settings{}
@@ -76,17 +76,17 @@ func load_settings() Settings {
         return configuration
     }
 
-    log.Fatal("Error: load_settings\n", err)
+    log.Fatal("Error: loadSettings\n", err)
     return configuration
 }
 
 func main() {
-    settings = load_settings()
-    http.HandleFunc("/", login_handler)
-    http.HandleFunc("/index", index_handler)
-    http.HandleFunc("/logout", logout_handler)
-    http.HandleFunc("/log", log_view_handler)
-    http.HandleFunc("/dmesg", dmesg_view_handler)
-    http.HandleFunc("/disk", smart_handler)
+    settings = loadSettings()
+    http.HandleFunc("/", loginHandler)
+    http.HandleFunc("/index", indexHandler)
+    http.HandleFunc("/logout", logoutHandler)
+    http.HandleFunc("/log", logHandler)
+    http.HandleFunc("/dmesg", dmesgHandler)
+    http.HandleFunc("/disk", smartHandler)
     log.Fatal(http.ListenAndServe(settings.Port, nil))
 }
