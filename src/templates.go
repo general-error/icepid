@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 by general-error
+ * Copyright 2016 2017 by general-error
  *
  * This file is part of Icepid.
  *
@@ -118,6 +118,12 @@ var index_tpl string = wrap(
         <pre class="cell">{{.Df}}</pre><br>
         <pre class="cell">{{.Sensors}}</pre><br>
         <hr>
+        <p>SMART:</p>
+        <ul>
+            {{range $key, $val := .Disks}}
+            <li><a href="/disk?disk={{$val}}">{{$val}}</a></li>
+            {{end}}
+        </ul>
         <p>Log files:</p>
         <ul>
             <li><a href="/dmesg">dmesg</a></li>

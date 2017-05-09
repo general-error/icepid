@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 by general-error
+ * Copyright 2016 2017 by general-error
  *
  * This file is part of Icepid.
  *
@@ -134,5 +134,16 @@ func get_sensors() string {
     }
 
     log.Print("Error: get_sensors\n", err)
+    return ""
+}
+
+func query_smart(disk string) string {
+    out, err := exec.Command("./icepid-smart", "-d", disk).Output()
+
+    if err == nil {
+        return string(out)
+    }
+
+    log.Print("Error: query_smart\n", err)
     return ""
 }

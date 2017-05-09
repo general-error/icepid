@@ -1,5 +1,5 @@
 {
-    "version": 1,
+    "version": 2,
     "port": ":8080",
     "cookieMaxAge": 86400,
     "cookieId": "randomid",
@@ -7,5 +7,8 @@
     "password": "",
     "logs": [
         "/var/log/kern.log"
+    ],
+    "disks": [
+        "sda"
     ]
 }

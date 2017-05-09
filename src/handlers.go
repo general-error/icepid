@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 by general-error
+ * Copyright 2016 2017 by general-error
  *
  * This file is part of Icepid.
  *
@@ -93,8 +93,9 @@ func index_handler(w http.ResponseWriter, r *http.Request) {
     w_val := get_w()
     df := get_df()
     sensors := get_sensors()
+    disks := settings.Disks
 
-    page := IndexPage{ appVersion, logs, updates, uptime, free, date, w_val, df, sensors }
+    page := IndexPage{ appVersion, logs, updates, uptime, free, date, w_val, df, sensors, disks }
     
     t, err := template.New("index").Parse(index_tpl)
     if err != nil {
@@ -122,4 +123,16 @@ func dmesg_view_handler(w http.ResponseWriter, r *http.Request) {
     check_access(w, r)
 
     fmt.Fprintf(w, "%v", query_dmesg())
+}
+
+func smart_handler(w http.ResponseWriter, r *http.Request) {
+    check_access(w, r)
+
+    disk := r.URL.Query().Get("disk")
+
+    if (disk != settings.Disks[0]) {
+        http.Redirect(w, r, "/index", http.StatusFound)
+    }
+
+    fmt.Fprintf(w, "%v", query_smart(disk))
 }

@@ -1,7 +1,7 @@
 /*
  * Simple server dashboard
  *
- * Copyright 2016 by general-error
+ * Copyright 2016 2017 by general-error
  *
  * This file is part of Icepid.
  *
@@ -36,6 +36,7 @@ type Settings struct {
     CookieName string
     Password string
     Logs []string
+    Disks []string
 }
 
 type IndexPage struct {
@@ -48,14 +49,15 @@ type IndexPage struct {
     W string
     Df string
     Sensors string
+    Disks []string
 }
 
 type LoginPage struct {
     ErrorMessage string
 }
 
-const appVersion string = "1.0.4"
-const confVersion int = 1
+const appVersion string = "1.1.0"
+const confVersion int = 2
 var loginAttempts int = 0
 var settings = Settings{}
 var loginPage = LoginPage{}
@@ -85,5 +87,6 @@ func main() {
     http.HandleFunc("/logout", logout_handler)
     http.HandleFunc("/log", log_view_handler)
     http.HandleFunc("/dmesg", dmesg_view_handler)
+    http.HandleFunc("/disk", smart_handler)
     log.Fatal(http.ListenAndServe(settings.Port, nil))
 }
