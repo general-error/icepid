@@ -56,9 +56,6 @@ func list_updates() string {
     } else {
         return output[len("Listing..."):len(output)];
     }
-
-    log.Print("Error: list_updates\n", err)
-    return "Error listing updates"
 }
 
 func get_uptime() string {
