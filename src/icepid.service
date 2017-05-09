@@ -1,0 +1,14 @@
+[Unit]
+Description=Icepid monitoring service
+After=syslog.target network.target
+
+[Service]
+SyslogIdentifier=icepid
+PIDFile=/tmp/icepid.pid
+User=icepid
+Group=users
+WorkingDirectory=/home/icepid/bin
+ExecStart=/home/icepid/bin/icepid
+
+[Install]
+WantedBy=multi-user.target
