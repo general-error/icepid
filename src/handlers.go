@@ -114,6 +114,7 @@ func log_view_handler(w http.ResponseWriter, r *http.Request) {
 
     if (err != nil || logNum < 0 || logNum > len(settings.Logs)) {
         http.Redirect(w, r, "/index", http.StatusFound)
+        return
     }
     
     fmt.Fprintf(w, "%v", query_log(settings.Logs[logNum]))
@@ -132,6 +133,7 @@ func smart_handler(w http.ResponseWriter, r *http.Request) {
 
     if (disk != settings.Disks[0]) {
         http.Redirect(w, r, "/index", http.StatusFound)
+		return
     }
 
     fmt.Fprintf(w, "%v", query_smart(disk))
